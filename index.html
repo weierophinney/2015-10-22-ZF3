@@ -45,77 +45,196 @@
       </section>
 
       <section>
-        <h2>What to expect</h2>
+        <h2>10 Years of Zend Framework</h2>
+
+        <aside class="notes">
+          <p>
+            We started work on ZF 10 years ago, and announced it at the very
+            first ZendCon. At the time, we were working with a group of selected
+            industry partners and community members. We did an initial release
+            the following March, at which time we opened up development to the
+            world via a public subversion repository.
+          </p>
+        </aside>
+      </section>
+
+      <section>
+        <h2>Original Architecture</h2>
 
         <ul>
-          <li class="fragment">Emphasis on <strong>components</strong></li>
-          <li class="fragment">Focus on HTTP, via <strong>PSR-7</strong> and <strong>middleware</strong></li>
-          <li class="fragment">Optimize for <strong>PHP 7</strong>, but support <strong>PHP 5.5+</strong></li>
+          <li>Components</li>
+          <li class="fragment">Bound together by an MVC</li>
         </ul>
       </section>
 
       <section>
-        <section>
-          <h1>Components</h1>
-        </section>
+        <h2>Evolution of v1</h2>
 
-        <section>
-          <h2>The past</h2>
-          <h3>ZF1</h3>
+        <ul>
+          <li class="fragment">Forms</li>
+          <li class="fragment">Layouts</li>
+          <li class="fragment"><code>Zend_Application</code></li>
+          <li class="fragment">Dojo, jQuery integration</li>
+        </ul>
 
+        <aside class="notes">
+          <p>
+            By 1.10, we had a stable stack that was solving a majority of
+            problems as encountered by our users, and had tools to allow
+            them to rapidly build applications.
+          </p>
+        </aside>
+      </section>
+
+      <section>
+        <h2>Revolution: ZF2</h2>
+
+        <ul>
+          <li class="fragment">Event-driven architecture</li>
+          <li class="fragment">Dependency injection</li>
+          <li class="fragment">First class modules</li>
+        </ul>
+
+        <aside class="notes">
           <ul>
-            <li class="fragment">Components are developed within the framework
-              repository, <em>and</em></li>
-            <li class="fragment">are installable <em>only with the entire
-              framework</em>.</li>
+            <li>Events gave users a way to hook into every part of the ZF
+              workflow, or to build their own workflows.</li>
+            <li>Dependency injection gave users a way to substitute different
+              classes or implementations where desired</li>
+            <li>Modules were something we dreamed of in ZF1, but never
+              accomplished. In ZF2, we made them first-class citizens. Modules
+              enabled code re-use and granularity; coupled with the events system
+              and dependency injection, they also enabled a ton of
+              customizability.</li>
           </ul>
-        </section>
+        </aside>
+      </section>
 
-        <section>
-          <h2>The past</h2>
-          <h3>ZF2, pre 2.4</h3>
+      <section>
+        <h2>… at a cost</h2>
 
-          <ul>
-            <li class="fragment">Components were developed within the framework
-              repository, <em>and</em></li>
-            <li class="fragment">could be installed <em>individually</em>
-              (Composer, git submodules).</li>
-          </ul>
+        <ul>
+          <li class="fragment">Complete break in compatibility.</li>
+          <li class="fragment">Targeting expert developers == less inviting</li>
+          <li class="fragment">Components depend on integration provided by MVC
+            layer</li>
+        </ul>
+      </section>
 
-          <aside class="notes">
-            <ul>
-              <li>"Individually" is a loose term; most components have several
-                dependencies currently.</li>
-              <li>This is accomplished via a semi-manual process (we trigger it
-                for each release).</li>
-              <li>If a patch lands in a component, you can only test it in your
-                application before a release if you add <strong>all</strong> of
-                ZF as a dependency.</li>
-            </ul>
-          </aside>
-        </section>
+      <section>
+        <h1>Ecosystem changes</h1>
+      </section>
 
-        <section>
-          <h2>Today</h2>
-          <h3>ZF 2.5+</h3>
+      <section>
+        <h2>Composer</h2>
 
-          <ul>
-            <li class="fragment">Components are now developed in their own repositories.</li>
-            <li class="fragment">Components can be installed individually.</li>
-            <li class="fragment">The ZF repository <strong>depends</strong> on components!</li>
-          </ul>
+        <img src="img/composer.png" />
 
-          <aside class="notes">
-            <ul>
-              <li>We'll be focusing on separated interfaces as well, to better
-                decouple components, allowing them to be used
-                independently.</li>
-            </ul>
-          </aside>
-        </section>
+        <aside class="notes">
+          <p>
+            Composer launched as we were finalizing the stable ZF2 release, so ZF2 has
+            always lived in that ecosystem. However, we didn't
+            <strong>design</strong> for it, which meant that we were manually
+            splitting the components, and often those releases were delayed from
+            an official ZF2 release.
+          </p>
+        </aside>
+      </section>
 
-        <section>
-          <h2 class="nocaps">ZF's composer.json now looks like...</h2>
+      <section>
+        <h2>FIG</h2>
+
+        <h4>Framework Interop Group</h4>
+
+        <aside class="notes">
+          <p>
+            New standards such as logging and PSR-7 pointed a new direction for FIG:
+            shared interfaces, allowing developers to decouple their code from specific
+            implementations.
+          </p>
+        </aside>
+      </section>
+
+      <section>
+        <h2>PSR-7</h2>
+
+        <p>Every framework abstracts HTTP differently.</p>
+
+        <p>Let's standardize that.</p>
+      </section>
+
+      <section>
+        <h2>Frameworks <em>must change</em></h2>
+
+        <blockquote class="fragment">
+          The job of a framework is to provide plumbing, and <em>get out of your
+          way.</em>
+        </blockquote>
+      </section>
+
+      <section>
+        <h2>ZF3 Goals</h2>
+
+        <ul>
+          <li class="fragment">Componentization and re-use</li>
+          <li class="fragment">Performance</li>
+          <li class="fragment">Usability</li>
+          <li class="fragment">Focus on PSR-7 and middleware</li>
+        </ul>
+
+        <aside class="notes">
+          <p>
+            These goals are intertwined. PSR-7 and middleware are more performant,
+            provide simpler usage paradigms, and encourage mixing and matching individual
+            components. 
+          </p>
+        </aside>
+      </section>
+
+      <section>
+        <h1>What we've accomplished</h1>
+      </section>
+
+      <section>
+        <h2>Components</h2>
+
+        <p>All components are now versioned separately.</p>
+
+        <p>(Full story at bit.ly/zf2-split)</p>
+
+        <aside class="notes">
+          <p>
+            This is huge. Many components have continued to get version bumps despite
+            having zero changes between versions. Other components have been held back,
+            because they have to wait for the rest of the framework to be ready.
+          </p>
+
+          <p>
+            Today, we can version these as needed. Already, we have advanced versions of
+            zend-log and zend-servicemanager that incorporate new features; some, such as
+            servicemanager and eventmanager, are about ready to be tagged at 3.0 NOW; they
+            don't have to wait for the full framework.
+          </p>
+        </aside>
+      </section>
+
+      <section>
+        <h2>Standardized Package Structure</h2>
+
+        <ul>
+          <li class="fragment">PSR-4 structure for source and tests.</li>
+          <li class="fragment">Documentation <em>per package</em><br />
+            <em>(in progress)</em>
+          </li>
+          <li class="fragment">Standard QA toolchain; per-package continuous integration.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="nocaps">ZF2 Package</h2>
+
+        <div class="fragment">
+          <p>The zendframework package now simply depends on components.</p>
 
           <pre><code class="lang-json" data-trim>
 {
@@ -127,567 +246,419 @@
   }
 }
           </code></pre>
-        </section>
+        </div>
 
-        <section>
-          <h1>Why?</h1>
-        </section>
-
-        <section>
-          <h2>Ease maintenance</h2>
-
-          <ul>
-            <li class="fragment">Allow more teams with commit rights</li>
-            <li class="fragment">Allow deterministic fate of repositories</li>
-          </ul>
-
-          <aside class="notes">
-            <ul>
-              <li>If a repo has no contributors, and isn't receiving issues/pull
-                requests, we may determine in the future to abandon it.</li>
-            </ul>
-          </aside>
-        </section>
-
-        <section>
-          <h2>Selective evolution</h2>
-
-          <ul>
-            <li class="fragment">Bump major versions as needed</li>
-            <li class="fragment">Framework repo can selectively upgrade
-              components</li>
-          </ul>
-
-          <aside class="notes">
-            <ul>
-              <li>Some components need more changes than others: SM, EM,
-                InputFilter, Forms.</li>
-              <li>Others are stable, and may not need huge changes in the
-                future: Escaper, Config, Paginator, etc.</li>
-              <li>Let them evolve on their own timelines; the framework can
-                upgrade them selectively.</li>
-              <li><strong>THIS IS PROBLEMATIC</strong>. As we hit new major
-                versions, coordinating changes and releases is more complex.</li>
-            </ul>
-          </aside>
-        </section>
-
-        <section>
-          <h2>Use-case specific skeletons</h2>
-
-          <ul>
-            <li class="fragment">Delivering only web services?</li>
-            <li class="fragment">Need performance?</li>
-            <li class="fragment">Need everything?</li>
-          </ul>
-
-          <h3 class="fragment nocaps"><br />There will be a skeleton for
-            that!</h3>
-
-          <aside class="notes">
-            <ul>
-              <li>If you're only doing SOAP, XML-RPC, or JSON-RPC, you might do
-                a small subset of components. Or if you're doing REST, you might
-                omit things like Navigation, Form, XmlRpc, Soap, and
-                session.</li>
-              <li>If you're focusing on performance, you might do a different
-                subset.</li>
-              <li>One way we're tackling it is via <strong>composer installer
-                scripts</strong>; Expressive is paving the way here.</li>
-            </ul>
-          </aside>
-        </section>
-
-        <section>
-          <h2>Components provide…</h2>
-
-          <ul>
-            <li>Easier maintenance</li>
-            <li>Greater flexibility</li>
-            <li>Wider adoption</li>
-          </ul>
-
-          <aside class="notes">
-            <ul>
-              <li>Each leads to the next.</li>
-            </ul>
-          </aside>
-        </section>
+        <aside class="notes">
+          <p>
+            That's it; no code!  This means that as we update individual
+            components, when you run a composer update, you get those new
+            features. <em>Without requiring a new version of the framework itself</em>.
+          </p>
+        </aside>
       </section>
 
       <section>
-        <section>
-          <h1>HTTP, PSR-7, and Middleware</h1>
-        </section>
+        <h2>Back to Basics</h2>
 
-        <section>
-          <h2>HTTP is the foundation of the web</h2>
+        <p class="fragment">ZF3 will reduce dependencies<br />to only what's needed for the MVC.</p>
 
-          <ul>
-            <li class="fragment">A client sends a <em>request</em></li>
-            <li class="fragment">A server returns a <em>response</em></li>
-          </ul>
-        </section>
-
-        <section>
-          <h2>HTTP messages</h2>
-
-          <div class="fragment">
-            <h4>Request</h4>
-
-            <pre><code class="lang-http" data-trim>
-GET /path HTTP/1.1
-Host: example.com
-Accept: application/json
-            </code></pre>
-          </div>
-
-          <div class="fragment">
-            <h4>Response</h4>
-
-            <pre><code class="lang-http" data-trim>
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{"foo":"bar"}
-            </code></pre>
-          </div>
-        </section>
-
-        <section>
-          <h2>Frameworks model messages</h2>
-
-          <p>But every framework does it differently.</p>
-
-          <pre class="fragment"><code class="lang-php" data-trim>
-$method = $request->getMethod();
-$method = $request->getRequestMethod();
-$method = $request->method;
-          </code></pre>
-        </section>
-
-        <section>
-          <h1>PSR-7</h1>
-
-          <h2>Shared HTTP Message Interfaces</h2>
-        </section>
-
-        <section>
-          <h2>Request</h2>
-
-          <pre><code class="lang-php" data-trim>
-$method     = $request->getMethod();
-$accept     = $request->getHeader('Accept');
-$path       = $request->getUri()->getPath();
-$controller = $request->getAttribute('controller');
-          </code></pre>
-        </section>
-
-        <section>
-          <h2>Response</h2>
-
-          <pre><code class="lang-php" data-trim>
-$response->getBody()->write('Hello world!');
-$response = $response
-  ->withStatus(200, 'OK')
-  ->withHeader('Content-Type', 'text/plain');
-          </code></pre>
-        </section>
-
-        <section>
-          <h2>Diactoros: PSR-7 Implementation</h2>
-
-          <h4>https://github.com/zendframework/zend-diactoros</h4>
-
-          <ul>
-            <li>Developed in tandem with the PSR-7 specification.</li>
-            <li>First complete PSR-7 implementation.</li>
-            <li>Already widely used in the PHP ecosystem.</li>
-          </ul>
-        </section>
-
-        <section>
-          <h2>Middleware<h2>
-          <h3 class="nocaps">Between the request and response</h3>
-
-          <pre><code class="lang-php" data-trim>
-function ($request, $response)
-{
-    // do some work
-    return $response; // same, or a new instance.
-}
-          </code></pre>
-        </section>
-
-        <section>
-          <h1>Types of middleware</h1>
-        </section>
-
-        <section>
-          <h2>Pipelines</h2>
-
-          <pre><code class="lang-php" data-trim>
-$pipeline->pipe($middleware1);          // always evaluate
-$pipeline->pipe('/path', $middleware2); // only if path matches
-$pipeline->pipe('/different/path', $middleware3);
-$response = $pipeline->run();
-          </code></pre>
-
-          <aside class="notes">
-            <ul>
-              <li>This is like Connect in node.js</li>
-            </ul>
-          </aside>
-        </section>
-
-        <section>
-          <h2>Onion style</h2>
-
-          <pre><code class="lang-php" data-trim>
-class Outer
-{
-    public $inner;
-    public function __invoke($request, $response)
-    {
-        // do some work
-
-        $response = ($this->inner)($request, $response);
-
-        // do some work
-        return $response;
-    }
-}
-
-$response = $outer($request, $response);
-          </code></pre>
-
-          <aside class="notes">
-            <ul>
-              <li>This is like Rack, WSGI, and Stack-PHP</li>
-            </ul>
-          </aside>
-        </section>
-
-        <section>
-          <h2>Lambda style</h2>
-
-          <pre><code class="lang-php" data-trim>
-function (Request $request)
-{
-    // do some work
-    return $response;
-}
-
-$response = $middleware($request);
-          </code></pre>
-
-          <aside class="notes">
-            <ul>
-              <li>This is a functional paradigm</li>
-              <li>Laravel 5 and Lumen use this style</li>
-            </ul>
-          </aside>
-        </section>
-
-        <section>
-          <h2>Stratigility: PSR-7 Middleware Foundation</h2>
-
-          <p>https://github.com/zendframework/zend-stratigility</p>
-
-          <ul>
-            <li class="fragment">Port of Sencha Connect.</li>
-            <li class="fragment">Typehints on PSR-7 interfaces; <em>framework agnostic!</em></li>
-            <li class="fragment">Implement pipelines and/or onions.</li>
-          </ul>
-        </section>
-
-        <section>
-          <h2>Expressive: PSR-7 Middleware Microframework</h2>
-
-          <p>http://framework.zend.com/expressive</p>
-
-          <ul>
-            <li class="fragment">Built on Stratigility.</li>
-            <li class="fragment">Provides routing, templating, and error
-              handling abstractions.</li>
-            <li class="fragment">Choose your own components; defaults to strong
-              3rd party options.</li>
-          </ul>
-        </section>
-
-        <section>
-          <h2>Prompted Installation</h2>
-
-          <img src="img/expressive-installer.png"/>
-
-          <aside class="notes">
-            <ul>
-              <li>This is a huge breakthrough! Install only what you want!</li>
-              <li>Select <em>components</em> you are interested in!</li>
-              <li>Flexible enough to allow specifying other packages!</li>
-            </ul>
-          </aside>
-        </section>
-
-        <section>
-          <h2>Usage</h2>
-
-          <pre><code class="lang-php" data-trim>
-$app = AppFactory($container, $router);
-$app->pipe(function ($request, $response, $next) {
-    return next($request, $response->withHeader('X-Powered-By', 'Expressive'));
-});
-$app->get('/', function ($request, $response, $next) {
-    $response->getBody()->write('<h1>Hello, world!</h1>');
-    return $response;
-});
-$app->post('/ping', function ($request, $response, $next) {
-    return new JsonResponse(['ack' => time()]);
-});
-$app->run();
-          </code></pre>
-        </section>
-
-        <section>
-          <h2>Compose applications</h2>
-
-          <pre><code class="lang-php" data-trim>
-$app->pipe('/customer', $zf2Middleware); // ZF2!
-$app->pipe('/products', $zf1Middleware); // ZF1!
-$app->pipe('/api', $apigility);          // Apigility!
-$app->pipe('/user', $userMiddleware);    // 3rd party!
-$app->get('/', $homepage);               // Static homepage!
-$app->get('/contact', $contactLanding);
-$app->post('/contact/process', $contactProcess);
-$app->get('/contact/thankyou', $contactDone);
-
-$app->run();
-          </code></pre>
-        </section>
-
-        <section>
-          <h2>Why?!?!?!?!</h2>
-
-          <ul>
-            <li class="fragment">Performance</li>
-            <li class="fragment">Developer experience</li>
-            <li class="fragment">Reusability across frameworks</li>
-          </ul>
-
-          <aside class="notes">
-            <ul>
-              <li>Performance: lazy-loading of resources based on opportunistic
-                path matching; slimmer runtime engine (typically). You **can**
-                run into the same performance issues of any web application;
-                it's a matter of how you architect things.</li>
-              <li><strong>We've measured > 4X speeds over ZF!</strong></li>
-              <li>DX: simpler patterns; usually do only one thing per
-                middleware; compose middleware in order to accomplish complex
-                workflows; etc.</li>
-              <li>If you target middleware, and not the framework, you create
-                reusable web-facing widgets!</li>
-            </ul>
-          </aside>
-        </section>
-
-        <section>
-          <h2>PSR-7 and the ZF MVC</h2>
-
-          <ul>
-            <li class="fragment">Nothing changes; we continue using zend-http;</li>
-            <li class="fragment">but we will offer a <strong>Middleware</strong>
-              dispatcher…</li>
-            <li class="fragment">which uses our new <strong>PSR-7 bridge</strong>.</li>
-          </ul>
-
-          <aside class="notes">
-            <ul>
-              <li>The PSR-7 bridge allows translating between zend-http and
-                PSR-7</li>
-              <li>The middleware dispatcher allows routing requests to
-                PSR-7-based middleware, which leads to the next slide.</li>
-            </ul>
-          </aside>
-        </section>
-
-        <section>
-          <h2>Consuming middleware</h2>
-
-          <p>ZF will allow dispatching the following middleware:</p>
-
-          <pre><code class="lang-php" data-trim>
-function (
-    ServerRequestInterface $request,
-    Response $response,
-    callable $next = null
-) : ResponseInterface
-          </code></pre>
-
-          <aside class="notes">
-            <ul>
-              <li>ZF's DispatchableInterface is essentially this middleware
-                interface already, minus the callable.</li>
-              <li>Provides us compability with Slim, Relay, and our own
-                Expressive.</li>
-              <li>Serves as a template for executing alternate forms of
-                middleware.</li>
-            </ul>
-          </aside>
-        </section>
-
-        <section>
-          <h2>Middleware wrappers for ZF apps</h2>
-
-          <pre><code class="lang-php" data-trim>
-$middleware = new MvcMiddlewareWrapper(
-    require 'config/application/config.php'
-);
-
-class MvcMiddlewareWrapper
-{
-    public function __invoke($request, $response)
-    {
-        $app = Application::init($this->config);
-        return $app->dispatch($request, $response);
-    }
-}
-          </code></pre>
-
-          <aside class="notes">
-            <ul>
-              <li>Request/response are PSR-7 messages</li>
-              <li>We'll likely do something like this for ZF1, too, which can
-                bridge the request/response instances.</li>
-              <li>Requires we have a new path that returns the response, instead
-                of emitting it.</li>
-              <li>Lazy-initialization so that it only loads ZF if the middleware
-                is invoked!</li>
-            </ul>
-          </aside>
-        </section>
-
-        <section>
-          <h2>PSR-7 and Middleware provide…</h2>
-
-          <ul>
-            <li>Paths for performance optimization</li>
-            <li>Simpler web-facing interfaces</li>
-            <li>Greater interoperability and re-use potential</li>
-          </ul>
-        </section>
+        <p class="fragment">Use <em>Composer</em> to add what you need.</p>
       </section>
 
       <section>
-        <section>
-          <h1>PHP 7<br />and PHP 5.5</h1>
-        </section>
+        <h1>Change is inevitable</h1>
+      </section>
 
-        <section>
-          <h2>Upgrades to PHP 5.5 starting with 2.5</h2>
+      <section>
+        <h2>Service Manager</h2>
 
+        <ul>
+          <li class="fragment">container-interop</li>
+          <li class="fragment">Consistent interfaces.</li>
+          <li class="fragment">Re-use factories for multiple named services.</li>
+          <li class="fragment">Immutable.</li>
+          <li class="fragment">Performant (4X faster)!</li>
+          <li class="fragment"><em>Mostly</em> backwards compatible!</li>
+        </ul>
+
+        <aside class="notes">
           <ul>
-            <li>We get to use traits!</li>
-            <li>We get to use short array syntax!</li>
-            <li>We get to use the callable type hint!</li>
-            <li>We get to use <kbd>finally</kbd>!</li>
-            <li>No more password hashing shims!</li>
-            <li>We can use the <kbd>::class</kbd> magic constant!</li>
-            <li>We get to use generators!</li>
-            <li>We get faster, more secure PHP!</li>
+            <li>Thank Michäel Gallego!</li>
+            <li>We're using an emerging standard, container-interop, as the base
+              interface of the service manager component. This makes it a drop-in
+              replacement for other containers, but also means you can swap out
+              service manager for something else. Use your code, the way you
+              want.</li>
+            <li>All interfaces follow the same pattern of accepting the
+              container first, and additional arguments after; additionally, the
+              majority are invokables, meaning you can write them as any PHP
+              callable. This also means that the abstract factory interface is now
+              drop-in compatible with the factory interface, as it extends
+              it.</li>
+            <li>Factories now receive the requested service name as an argument,
+              allowing them to be re-used for multiple services, and return
+              different instances based on the service requested. This largely
+              eliminates the need for abstract factories!</li>
+            <li>Immutability allows us to do aggressive caching, reduced the
+              code base by 50%, and sped it up by 4X!</li>
+            <li>Depending on how you write your factories, you may not need to
+              do anything when upgrading!</li>
           </ul>
-        </section>
+        </aside>
+      </section>
 
-        <section>
-          <h2>Optimize for PHP 7</h2>
+      <section>
+        <h2 class="nocaps">New method: build</h2>
 
+        <pre><code class="lang-php" data-trim>
+public function build($name, array $options = null)
+        </code></pre>
+
+        <p>For when you need a factory; think <em>plugins</em></p>
+      </section>
+
+      <section>
+        <h2>FactoryInterface</h2>
+
+        <pre><code class="lang-php" data-trim>
+public function __invoke(
+    ContainerInterface $container,
+    $requestedName,
+    array $options = null
+)
+        </code></pre>
+
+        <aside class="notes">
           <ul>
-            <li class="fragment">Ran tests in strict (and coercive mode).
+            <li>BC break is in the new required argument, $requestedName</li>
+            <li>However, you can also write factories as any PHP callable, and
+              ignore any extra arguments passed!</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section>
+        <h2>Forward Compatibility</h2>
+
+        <p>Write your current factories as invokables.</p>
+
+        <pre><code class="lang-php" data-trim>
+public function __invoke(
+    ContainerInterface $container
+)
+        </code></pre>
+
+        <aside class="notes">
+          <ul>
+            <li>Not using the factory interface means that with the new required
+              arguments, you no longer have to make changes.</li>
+            <li>Typehinting on ContainerInterface works <strong>NOW</strong> (as
+              of 2.6), making it forward compatible.</li>
+            <li><em>Apigility is already doing this!</em></li>
+          </ul>
+        </aside>
+      </section>
+
+      <section>
+        <h2>EventManager</h2>
+
+        <ul>
+          <li class="fragment">4X&ndash;15x performance based on use case!</li>
+          <li class="fragment">BC breaks:
+            <ul>
+              <li>Removed argument overloading for <code>trigger()</code>.</li>
+              <li>Aggregate attachment is moved to aggregate implementations.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <aside class="notes">
+          <ul>
+            <li>Overloading added complexity to:
               <ul>
-                <li>Allowed us to fix bugs for PHP 5, and also forward-proof
-                  code for PHP 7.</li>
+                <li>using the method</li>
+                <li>internally in parsing the arguments</li>
               </ul>
             </li>
-            <li class="fragment">Potentially automate release builds that add
-              scalar typehints from docblock annotations.</li>
-            <li class="fragment">Continuous profiling in PHP 7 to see where we
-              can optimize architecture for performance.</li>
           </ul>
-
-          <aside class="notes">
-            <ul>
-              <li>The last is important, as a lot of work hsa been done in PHP 7
-                to streamline the object call graph; if we profile early, we can
-                make changes that will benefit PHP 7 users specifically.</li>
-            </ul>
-          </aside>
-        </section>
-
-        <section>
-          <h2>Updating PHP…</h2>
-
-          <ul>
-            <li>Provides better security</li>
-            <li>Improves performance</li>
-            <li>Allows us to improve the framework</li>
-          </ul>
-        </section>
+        </aside>
       </section>
 
       <section>
-        <section>
-          <h1>Summing up</h1>
-        </section>
+        <h2>Triggers</h2>
 
-        <section>
-          <h2>Components!</h2>
+        <pre><code class="lang-php" data-trim>
+trigger($eventName, $target = null, $argv = []);
+triggerUntil(callable $callback, $eventName, $target = null, $argv = []);
+triggerEvent(EventInterface $event);
+triggerEventUntil(callable $callback, EventInterface $event);
+        </code></pre>
 
-          <aside class="notes">
-            <ul>
-              <li>Welcome to a true <strong>component</strong> library, built
-                with <strong>Composer</strong> in mind!</li>
-            </ul>
-          </aside>
-        </section>
+        <aside class="notes">
+          <ul>
+            <li>Added the three additional methods to 2.7; you can make code
+              forward-compatible <em>now</em>.</li>
+            <li>No more need to remember argument order, or what an argument means based on position or type or other arguments provided.</li>
+            <li>Clear indication when triggering that you will be testing return values.</li>
+            <li>Consistency in methods.</li>
+          </ul>
+        </aside>
+      </section>
 
-        <section>
-          <h2>HTTP, PSR-7, and Middleware!</h2>
+      <section>
+        <h2>Aggregates</h2>
 
-          <aside class="notes">
-            <ul>
-              <li>Welcome to a truly <strong>HTTP-centric</strong> framework,
-                utilizing the <strong>best enterprise stack</strong> alongside
-                Expressive, an optimized <strong>middleware</strong> runtime!</li>
-            </ul>
-          </aside>
-        </section>
+        <p>Before:</p>
 
-        <section>
-          <h2>PHP 7 and PHP 5.5!</h2>
+        <pre><code class="lang-php" data-trim>
+$events->attach($aggregate);
+$events->attachAggregate($aggregate);
+$aggregate->attach($events);
+        </code></pre>
 
-          <aside class="notes">
-            <ul>
-              <li>Welcome to the future of PHP, using the
-                <strong>latest</strong> and greatest features in order to
-                deliver you a better, more <strong>secure</strong>, more
-                <strong>performant</strong> runtime!</li>
-            </ul>
-          </aside>
-        </section>
+        <div class="fragment">
+          <p>After:</p>
+          
+          <pre><code class="lang-php" data-trim>
+$aggregate->attach($events);
+          </code></pre>
+        </div>
 
-        <section>
-          <h2>Thank you!</h2>
+        <aside class="notes">
+          <ul>
+            <li>Takeaway: you can make your code forward-compatible by only
+              using the last signature!</li>
+            <li>
+              TMTOWTDI often bites you in the ass. Having exactly one way to do
+              it, poka-yoke takes guess work away.
+            </li>
+          </ul>
+        </aside>
+      </section>
 
-          <h4>Matthew Weier O'Phinney</h4>
+      <section>
+        <h2>MVC</h2>
 
-          <h4 class="nocaps">
-            <a href="http://framework.zend.com">http//framework.zend.com</a><br />
-            <a href="https://apigility.org">https://apigility.org</a><br />
-            <a href="https://twitter.com/mwop">@mwop</a><br />
-            <a href="https://mwop.net">https://mwop.net</a>
-          </h4>
+        <ul>
+          <li class="fragment">Updated to changes in zend-servicemanager.</li>
+          <li class="fragment">Updated to changes in zend-eventmanager.</li>
+          <li class="fragment">Essentially <em>stays the same.</em></li>
+          <li class="fragment">But adds a <code>MiddlewareListener</code>.</li>
+        </ul>
+      </section>
 
-					<p>Rate this talk: <a href="https://joind.in/15622">https://joind.in/15622</a></p>
-        </section>
+      <section>
+        <h2>Routing to Middleware</h2>
+
+        <pre><code class="lang-php" data-trim>
+'oauth' => [
+    'type' => 'Literal',
+    'options' => [
+        'route' => '/oauth',
+        'defaults' => [
+            'middleware' => OAuthMiddleware::class,
+        ],
+    ],
+],
+        </code></pre>
+      </section>
+
+      <section>
+        <h2>MVC Availability</h2>
+
+        <p>4&ndash;6 weeks!</p>
+
+        <aside class="notes">
+          <ul>
+            <li>We need to get components updated to the EM and SM changes before we release to ensure everything works well together.</li>
+            <li>We need to finalize the list of components we include by default.</li>
+            <li>We need to document how to add components, and wire them into the framework.</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section>
+        <h1>Enough with the boring stuff</h1>
+
+        <aside class="notes">
+            <li>That's still the MVC as we know it, just faster.</li>
+            <li>This is what many are thinking of as the ZF3 release. It's not.</li>
+        </aside>
+      </section>
+
+      <section>
+        <h2>Time to Reflect</h2>
+
+        <p>Where is the PHP community headed?</p>
+
+        <aside class="notes">
+          <p>We already did this reflection, but let'd re-focus.</p>
+        </aside>
+      </section>
+
+      <section>
+        <h1>Composer</h1>
+
+        <aside class="notes">
+          One simply does not release a package without making it availble via Composer.
+          Even most SDKs are available via Composer and packagist anymore.
+        </aside>
+      </section>
+
+      <section>
+        <h2>FIG</h2>
+
+        <p>Creating shared interfaces.</p>
+
+        <p class="fragment">Users can target <em>abstractions</em>, not <em>implementations</em>.</p>
+      </section>
+
+      <section>
+        <h2>PSR-7</h2>
+
+        <p>HTTP Message Interfaces</p>
+
+        <p class="fragment">Providing a common HTTP abstraction to program against.</p>
+      </section>
+
+      <section>
+        <h2>Middleware</h2>
+
+        <img src="img/lambda.png" alt="Middleware" />
+
+        <aside class="notes">
+          Think of this in terms of the unix philosophy: do one thing well, and
+          communicate via streams.
+        </aside>
+      </section>
+
+      <section>
+        <h2>Middleware Signatures</h2>
+
+        <pre><code class="lang-php" data-trim>
+function (ServerRequestInterface $request) : ResponseInterface
+
+function (
+    ServerRequestInterface $request,
+    ResponseInterface $response
+) : ResponseInterface
+
+function (
+    ServerRequestInterface $request,
+    ResponseInterface $response,
+    callable $next
+) : ResponseInterface
+        </code></pre>
+
+        <aside class="notes">
+          Primary goal is to transform a request into a response; the main differences
+          between the signatures is that each successive one reduces depending on
+          concrete implementations and/or using convention-based approaches.
+        </aside>
+      </section>
+
+      <section>
+        <h2>container-interop</h2>
+
+        <pre><code class="lang-php" data-trim>
+interface ContainerInterface
+{
+    public function has($serviceName);
+    public function get($serviceName);
+}
+        </code></pre>
+
+        <aside class="notes">
+          There will be more infrastructure interfaces like this in the future, too.
+        </aside>
+      </section>
+
+      <section>
+        <h1>Takeaways</h1>
+
+        <aside class="notes">
+          <p>
+            When we consider all these points &mdash; composer, fig, PSR-7,
+            middleware, container-interop &mdash; what do we learn?
+          </p>
+        </aside>
+      </section>
+
+      <section>
+        <h2>Frameworks should be an implementation detail</h2>
+      </section>
+
+      <section>
+        <h2>Frameworks should be a commodity</h2>
+      </section>
+
+      <section>
+        <h2>Frameworks should get out of the way of your code</h2>
+
+        <aside class="notes">
+          <p>
+            So, if the job is to get out of your way, what will an application
+            stack look like in the future? How will developers program
+            applications in PHP? Our answer…
+          </p>
+        </aside>
+      </section>
+
+      <section>
+        <h2>Expressive</h2>
+
+        <p>PSR-7 middleware microframework</p>
+
+        <ul>
+          <li class="fragment">Provides and consumes a routing interface.</li>
+          <li class="fragment">Pulls matched middleware from a
+            <code>ContainerInterface</code>.</li>
+          <li class="fragment">Provides a templating interface, if you need it.</li>
+          <li class="fragment">Provides error handling, and a way to hook into
+            it.</li>
+        </ul>
+
+        <aside class="notes">
+          <ul>
+            <li>Providing and coding to interfaces makes everything swappable.</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section>
+        <h2>In action:</h2>
+        <img src="img/expressive-installer.png" alt="Expresive installer" />
+      </section>
+
+      <section>
+        <h2>Expressive</h2>
+
+        <p>Wiring together <em>commodity components</em>.</p>
+      </section>
+
+      <section>
+        <h1><em>Own</em> your codebase</h1>
+      </section>
+
+      <section>
+        <h2>ZF3 is a Movement</h2>
+
+        <p class="fragment">An end to framework silos.</p>
+      </section>
+
+      <section>
+        <h2>Thank you!</h2>
+
+        <h4>Matthew Weier O'Phinney</h4>
+
+        <h4 class="nocaps">
+          <a href="http://framework.zend.com">http//framework.zend.com</a><br />
+          <a href="https://apigility.org">https://apigility.org</a><br />
+          <a href="https://mwop.net">https://mwop.net</a>
+          <a href="https://twitter.com/mwop">@mwop</a><br />
+        </h4>
+
+        <p>Rate this talk: <a href="https://joind.in/15622">https://joind.in/15622</a></p>
       </section>
     </div>
   </div>
